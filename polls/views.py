@@ -4,6 +4,7 @@ from django.urls import reverse
 from .models import Choice, Question
 from django.db.models import F
 from django.views import generic
+from django.utils import timezone
 # def index(request):
 #     latest_question_list = Question.objects.order_by("-pub_date")[:5]
 #     template = loader.get_template("polls/index.html")
@@ -15,7 +16,7 @@ class IndexView(generic.ListView):
     context_object_name = "latest_question_list" #Sets the context variable name
     
     def get_queryset(sefl):
-        return Question.objects.order_by("-pub_date")[:5]
+        return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")[:5]
 
 class DetailView(generic.DetailView):
     #Each class view needs to know which model it's operating on, either that or define get_queryset()
