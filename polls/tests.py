@@ -102,4 +102,8 @@ class QuestionIndexViewTests(TestCase):
             response.context["latest_question_list"],
             [question2, question1],
         )
-# Create your tests here.
+        
+        
+        
+    # Browser testing with Playwright or Selenium
+
